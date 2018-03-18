@@ -1,7 +1,7 @@
 DEVICE     = atmega328p
 CLOCK      = 16000000
-PROGRAMMER = -c arduino -b 115200 -P /dev/tty.usbmodem*
-OBJECTS    = lab1.o
+PROGRAMMER = -c arduino -b 115200 -P COM7
+OBJECTS    = lab2.o
 FUSES      = -U hfuse:w:0xde:m -U lfuse:w:0xff:m -U efuse:w:0x05:m
 
 # Tune the lines below only if you know what you are doing:
@@ -58,3 +58,6 @@ disasm:	main.elf
 
 cpp:
 	$(COMPILE) -E main.c
+
+test: test.hex
+	$(AVRDUDE) -U flash:w:test.hex:i
